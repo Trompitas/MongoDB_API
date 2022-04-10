@@ -21,8 +21,9 @@ app.get("/", (req, res) => {
 });
 
 // mongodb connection
+const MONGODB_URI = "mongodb+srv://trompitas:8jhOTJXYVNVxP0JF@cluster0.72l6r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(MONGODB_URI)
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((error) => console.error(error));
 
