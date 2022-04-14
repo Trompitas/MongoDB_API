@@ -4,39 +4,72 @@ const funkoSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
-    versionKey: false,
-    timestamps: true,
   },
   price: {
     type: Number,
     requiered: true,
-    versionKey: false,
-    timestamps: true,
   },
-  material:{
+  material: {
     type: String,
     required: true,
-    versionKey: false,
-    timestamps: true,
   },
   stock: {
     type: Number,
     required: true,
-    versionKey: false,
-    timestamps: true,
   },
   coleccion: {
     type: String,
     required: true,
-    versionKey: false,
-    timestamps: true,
   },
-  funkoImage:{
+  funkoImage: {
     type: String,
     required: true,
-    versionKey: false,
+  },
+},
+  {
+
     timestamps: true,
+    versionKey: false,
+
   }
-});
+
+);
+
+module.exports = mongoose.model('Funko', funkoSchema);const mongoose = require("mongoose");
+
+const funkoSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    requiered: true,
+  },
+  material: {
+    type: String,
+    required: true,
+  },
+  stock: {
+    type: Number,
+    required: true,
+  },
+  coleccion: {
+    type: String,
+    required: true,
+  },
+  funkoImage: {
+    type: String,
+    required: true,
+  },
+},
+  {
+
+    timestamps: true,
+    versionKey: false,
+
+  }
+
+);
 
 module.exports = mongoose.model('Funko', funkoSchema);
