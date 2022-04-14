@@ -18,12 +18,12 @@ app.use("/.netlify/functions/api", funkoRoute);
 
 
 // routes
-app.get("/", (req, res) => {
+app.get("/.netlify/functions/api/", (req, res) => {
   res.send("Suck APIS");
 });
 
 // mongodb connection
-const MONGODB_URI = "mongodb+srv://trompitas:8jhOTJXYVNVxP0JF@cluster0.72l6r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const MONGODB_URI = "mongodb+srv://trompitas:8jhOTJXYVNVxP0JF@cluster0.72l6r.mongodb.net/API?retryWrites=true&w=majority"
 mongoose
   .connect(MONGODB_URI)
   .then(() => console.log("Connected to MongoDB Atlas"))
