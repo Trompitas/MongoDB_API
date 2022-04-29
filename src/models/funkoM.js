@@ -24,6 +24,7 @@ const funkoSchema = Schema({
   funkoImage: {
     type: String,
     required: true,
+    default: "https://imgur.com/t/thiscouldbeus/lm64owN",
   },
 },
   {
