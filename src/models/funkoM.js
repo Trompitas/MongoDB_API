@@ -23,8 +23,9 @@ const funkoSchema = Schema({
   },
   funkoImage: {
     type: String,
-    required: false,
-  },
+    required: true,
+    default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN5XzDPdHKQX6SG51V9ZZxJ8cu7ERoT8RPUQ&usqp=CAU',
+  }
 },
   {
 
