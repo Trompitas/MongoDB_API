@@ -24,6 +24,10 @@ const funkoSchema = Schema({
   funkoImage: {
     type: String,
     required: false,
+  },
+  des: {
+    type: String,
+    required: true,
   }
 },
   {
