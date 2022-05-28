@@ -51,11 +51,11 @@ router.delete("/funkos/:id", (req, res) => {
 // update a user
 router.put("/funkos/:id", (req, res) => {
   const { id } = req.params;
-  const { name, price, material, stock, coleccion, funkoImage, des } = req.body;
+  const { name, price, material, stock, coleccion, funkoImage, des, promo, stars } = req.body;
   funkoschema
     .updateOne(
       { _id: id },
-      { $set: { name, price, material, stock, coleccion, funkoImage, des } }
+      { $set: { name, price, material, stock, coleccion, funkoImage, des, promo, stars } }
     )
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
