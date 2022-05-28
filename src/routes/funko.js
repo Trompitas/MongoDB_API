@@ -1,4 +1,5 @@
 const express = require("express");
+const { route } = require("express/lib/router");
 const funkoschema = require("../models/funkoM");
 
 const router = express.Router();
@@ -23,14 +24,20 @@ router.get("/funkos", (req, res) => {
 
 // get a funko
 router.get("/funkos/:id", (req, res) => {
-  const { name } = req.params;
+  const { id } = req.params;
   funkoschema
-    .findOne( name )
+    .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
-
+router.get("/funkos/:name", (req, res) => {
+  const { name } = req.params;
+  funkoschema
+    .find({ name })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
 
 // delete a funko
 router.delete("/funkos/:id", (req, res) => {
