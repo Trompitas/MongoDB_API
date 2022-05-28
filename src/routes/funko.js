@@ -43,8 +43,16 @@ router.get("/funkos/:name", async(text,res) => {
     res.json({message: "No such funko"})
   }
 
-  funkoschema.find().then((data) => res.json(data))
-  .catch((error) => res.json({ message: error }));
+  tasks.map((data) => ({
+    _id: task._id.toString(),
+    name: task.name,
+    price: task.price,
+    material: task.material,
+    stock: task.stock,
+    coleccion: task.coleccion,
+    funkoImage: task.funkoImage,
+    des: task.des,
+  }))
 });
 
 // delete a funko
