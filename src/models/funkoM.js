@@ -28,6 +28,16 @@ const funkoSchema = Schema({
   des: {
     type: String,
     required: true,
+  },
+  promo:{
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  stars:{
+    type: Number,
+    required: false,
+    default: 0,
   }
 },
   {
