@@ -1,8 +1,5 @@
 const express = require("express");
-const { route } = require("express/lib/router");
-const { text } = require("figlet");
 const funkoschema = require("../models/funkoM");
-const {findName} = require("../name.controller");
 
 const router = express.Router();
 
@@ -33,11 +30,13 @@ router.get("/funkos", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });*/
 
-router.get("/funkos/:name", (req, res) => {
+router.get("/funkos/:name", async(text,req, res) => {
   const { name } = req.params;
-  const search = new RegExp(name, "i");
+  const search = new RegExp(text, "i");
   funkoschema
-    .find({ name: search }).lean();
+    .find({
+      $or: [{ name: search }],
+    }).lean();
 });
 
 // delete a funko
