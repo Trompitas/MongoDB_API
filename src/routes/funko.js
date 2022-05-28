@@ -23,9 +23,9 @@ router.get("/funkos", (req, res) => {
 
 // get a funko
 router.get("/funkos/:id", (req, res) => {
-  const { id } = req.params;
+  const { name } = req.params;
   funkoschema
-    .find(id)
+    .findOne({ name })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
