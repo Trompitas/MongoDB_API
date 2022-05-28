@@ -30,14 +30,21 @@ router.get("/funkos", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });*/
 
-router.get("/funkos/:name",(req,res) => {
+router.get("/funkos/:name", async(req,res) => {
   const {name} = req.params;
-  funkoschema
+  const task = await funkoschema
     .find({
       $or: [{ name: name }],
     }).lean()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
+
+  if(task.length === 0){
+    res.json({message: "No such funko"})
+  }
+
+  funkoschema.find().then((data) => res.json(data))
+  .catch((error) => res.json({ message: error }));
 });
 
 // delete a funko
