@@ -37,9 +37,7 @@ router.get("/funkos/:name", (req, res) => {
   const { name } = req.params;
   const search = new RegExp(name, "i");
   funkoschema
-    .find({ name: search })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
+    .find({ name: search }).lean();
 });
 
 // delete a funko
