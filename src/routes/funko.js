@@ -34,7 +34,7 @@ router.get("/funkos/:name", (req, res) => {
   const { name } = req.params;
   const search = new RegExp(name, "i");
   funkoschema
-    .find({ name: search }).lean()
+    .find({$or: [{name: search}],}).lean()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
