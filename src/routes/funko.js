@@ -30,11 +30,11 @@ router.get("/funkos", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });*/
 
-router.get("/funkos/:name", async(req,res) => {
-  const {name} = req.params;
+router.get("/funkos/:name", async(text,res) => {
+  const search = new RegExp(text, "i");
   const task = await funkoschema
     .find({
-      $or: [{ name: name }],
+      $or: [{ name: search }],
     }).lean()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
