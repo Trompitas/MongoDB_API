@@ -30,6 +30,21 @@ router.get("/funkos/:id", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
+// get a funko for name
+router.get("/funkos/nameFunko/name", (req, res) => {
+  const search = new RegExp(text, "i");
+  const tasks = await funkoschema.find({
+    $or: [{ name: search }],
+  }).lean();
+
+  if (tasks.length === 0) {
+    console.log("No funkos Found");
+    await connection.close();
+    process.exit(0);
+  }
+  
+});
+
 // delete a funko
 router.delete("/funkos/:id", (req, res) => {
   const { id } = req.params;
