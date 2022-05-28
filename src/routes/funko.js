@@ -35,7 +35,9 @@ router.get("/funkos/:name", async(text) => {
   funkoschema
     .find({
       $or: [{ name: search }],
-    }).lean();
+    }).lean()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
 });
 
 // delete a funko
