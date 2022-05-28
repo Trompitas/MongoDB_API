@@ -23,14 +23,6 @@ router.get("/funkos", (req, res) => {
 });
 
 // get a funko
-router.get("/funkos/:id", (req, res) => {
-  const { id } = req.params;
-  funkoschema
-    .findById(id)
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
 router.get("/funkos/:name", (req, res) => {
   const { name } = req.params;
   funkoschema
