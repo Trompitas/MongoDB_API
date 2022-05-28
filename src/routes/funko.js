@@ -30,29 +30,23 @@ router.get("/funkos", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });*/
 
-router.get("/funkos/:name", async(text,res) => {
+router.get("/funkos/:name", async (text, res) => {
   const search = new RegExp(text, "i");
   const task = await funkoschema
     .find({
       $or: [{ name: search }],
-    }).lean()
+    })
+    .lean()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 
-  if(task.length === 0){
-    res.json({message: "No such funko"})
+  if (task.length === 0) {
+    res.json({ message: "No such funko" });
   }
 
-  tasks.map((data) => ({
-    _id: task._id.toString(),
-    name: task.name,
-    price: task.price,
-    material: task.material,
-    stock: task.stock,
-    coleccion: task.coleccion,
-    funkoImage: task.funkoImage,
-    des: task.des,
-  }))
+  task
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
 });
 
 // delete a funko
@@ -69,7 +63,10 @@ router.put("/funkos/:id", (req, res) => {
   const { id } = req.params;
   const { name, price, material, stock, coleccion, funkoImage, des } = req.body;
   funkoschema
-    .updateOne({ _id: id }, { $set: { name, price, material, stock, coleccion, funkoImage, des } })
+    .updateOne(
+      { _id: id },
+      { $set: { name, price, material, stock, coleccion, funkoImage, des } }
+    )
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
