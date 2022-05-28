@@ -36,17 +36,15 @@ router.get("/funkos/:name", async (text, res) => {
     .find({
       $or: [{ name: search }],
     })
-    .lean()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
+    .lean();
+    
 
   if (task.length === 0) {
     res.json({ message: "No such funko" });
   }
 
-  task
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
+  funkoschema.then((data) => res.json(data))
+  .catch((error) => res.json({ message: error }));
 });
 
 // delete a funko
