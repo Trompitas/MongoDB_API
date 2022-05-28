@@ -22,11 +22,19 @@ router.get("/funkos", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
-// get a funko by name
+// get a funko
+/*router.get("/funkos/:id", (req, res) => {
+  const { id } = req.params;
+  funkoschema
+    .findById(id)
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});*/
+
 router.get("/funkos/:name", (req, res) => {
   const { name } = req.params;
   funkoschema
-    .find(name)
+    .find({ name })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
