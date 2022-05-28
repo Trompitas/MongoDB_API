@@ -30,21 +30,12 @@ router.get("/funkos", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });*/
 
-router.get("/funkos/:name", async (text, res) => {
-  const search = new RegExp(text, "i");
-  const task = await funkoschema
-    .find({
-      $or: [{ name: search }],
-    })
-    .lean();
-    
-
-  if (task.length === 0) {
-    res.json({ message: "No such funko" });
-  }
-
-  funkoschema.then((data) => res.json(data))
-  .catch((error) => res.json({ message: error }));
+router.get("/funkos/:name", (req, res) => {
+  const { name } = req.params;
+  funkoschema
+    .find({ name: name }).lean()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
 });
 
 // delete a funko
