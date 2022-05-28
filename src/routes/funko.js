@@ -23,7 +23,7 @@ router.get("/funkos", (req, res) => {
 });
 
 // get a funko
-router.get("/funkos/:name", (req, res) => {
+router.get("/funkos/name/:name", (req, res) => {
   const { name } = req.params;
   funkoschema
     .find(name)
