@@ -30,10 +30,11 @@ router.get("/funkos/:id", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
+// get a funko for name
 router.get("/funkos/:name", (req, res) => {
   const { name } = req.params.name;
   funkoschema
-    .findById(name)
+    .find(name)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
