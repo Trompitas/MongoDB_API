@@ -22,36 +22,15 @@ router.get("/funkos", (req, res) => {
 });
 
 // get a funko
-router.get("/funkos/:id", async(task) => {
-  const search = new RegExp(text, "i");
-  const tasks = await funkoschema.find({
-    $or: [{ name: search }],
-  }).lean();
-  //console.log(JSON.stringify(task, null, 2));
-  //console.log(tasks[0]);
-  //console.table(Object.entries(tasks[0]));
-
-  if (tasks.length === 0) {
-    console.log("No funkos Found");
-    await connection.close();
-    process.exit(0);
-  }
-
-  console.table(
-    tasks.map((task) => ({
-      _id: task._id.toString(),
-      name: task.name,
-      price: task.price,
-      material: task.material,
-      stock: task.stock,
-      coleccion: task.coleccion,
-      funkoImage: task.funkoImage,
-    }))
-  );
-  console.log(`${tasks.length} matches`);
-  await connection.close();
-  process.exit(0);
+router.get("/funkos/:id", (req, res) => {
+  const { id } = req.params;
+  funkoschema
+    .find(id)
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
 });
+
+
 
 // delete a funko
 router.delete("/funkos/:id", (req, res) => {
