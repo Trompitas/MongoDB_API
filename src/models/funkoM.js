@@ -38,6 +38,10 @@ const funkoSchema = Schema({
     type: Number,
     required: false,
     default: 0,
+  },
+  nCa:{
+    type: Number,
+    required: false,
   }
 },
   {
